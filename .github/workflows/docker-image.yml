@@ -42,7 +42,7 @@ jobs:
         password: ${{ secrets.DOCKER_PASSWORD }}
     - name: Run tests
       run: |
-        docker run -d app ipdocker/flask-app:${{ env.TAG }} --port 5000
+        docker run -d --name app ipdocker/flask-app:${{ env.TAG }} --port 5000
         curl --retry 5 --retry-connrefused --retry-delay 10 http://localhost:5000
         docker stop $(docker ps -q --filter ancestor=ipdocker/flask-app:${{ env.TAG }})
         docker rmi ipdocker/flask-app:${{ env.TAG }}
