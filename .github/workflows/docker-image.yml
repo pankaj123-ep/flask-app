@@ -20,7 +20,7 @@ jobs:
       uses: docker/login-action@v3
       with:
         username: "ipdocker"
-        password: ${{ secrets.dev.DOCKER_PASSWORD }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
     - name: Push the Docker image
       run: docker push ipdocker/flask-app:$(date +%s)
       env:
