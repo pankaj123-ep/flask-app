@@ -13,13 +13,13 @@ jobs:
     name: build-and-push
     runs-on: ubuntu-latest
     outputs:
-      image-tag: ${{ steps.set-tag.outputs.image-tag }}
+      image-tag: ${{ steps.vars.outputs.image-tag }}
 
     steps:
     - uses: actions/checkout@v4
     - name: Set up Docker image tag
       id: vars
-      run: echo "image-tag=$(date +%s)" >> "$GITHUB_OUTPUTS"
+      run: echo "image-tag=$(date +%s)" >> $GITHUB_OUTPUT
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag ipdocker/flask-app:${{ steps.set-tag.outputs.image-tag }}
     - name: Log in to Docker Hub
