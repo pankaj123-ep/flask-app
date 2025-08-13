@@ -19,7 +19,7 @@ jobs:
     - uses: actions/checkout@v4
     - name: Set up Docker image tag
       id: vars
-      run: echo "image-tag=$(date +%s)" >> $GITHUB_OUTPUTS
+      run: echo "image-tag=$(date +%s)" >> "$GITHUB_OUTPUTS"
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag ipdocker/flask-app:${{ steps.set-tag.outputs.image-tag }}
     - name: Log in to Docker Hub
