@@ -47,7 +47,7 @@ jobs:
         run: docker pull ipdocker/flask-app:${{ needs.build-and-push.outputs.image-tag }}
 
       - name: Run Docker container
-        run: docker run --rm ipdocker/flask-app:${{ needs.build-and-push.outputs.image-tag }}
+        run: docker run -d --rm ipdocker/flask-app:${{ needs.build-and-push.outputs.image-tag }}
       - name: curl host
         run: curl http://localhost:5000
         continue-on-error: false
