@@ -32,6 +32,11 @@ jobs:
       run: docker push ipdocker/flask-app:${{ steps.vars.outputs.image-tag }}
       env:
         DOCKER_BUILDKIT: 1
+    - name: upload artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: taskdef_file
+        paths: ecs/app-flask-revision1.json
   
   run-image:
     name: Pull and Run Docker Image
@@ -71,6 +76,11 @@ jobs:
         run: |
           ls -l $GITHUB_WORKSPACE
           ls -l $GITHUB_WORKSPACE/ecs
+          
+      - name: Download task definition artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: taskdef_file
       - name: Render new image in task definition
         id: render-container
         uses: aws-actions/amazon-ecs-render-task-definition@v1
