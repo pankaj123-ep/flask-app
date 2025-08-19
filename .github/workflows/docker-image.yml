@@ -71,7 +71,7 @@ jobs:
         id: render-container
         uses: aws-actions/amazon-ecs-render-task-definition@v1
         with:
-          task-definition: app-flask-revision1.json
+          task-definition: ecs/app-flask-revision1.json
           container-name: flask-app
           image: ipdocker/flask-app:${{ needs.build-and-push.outputs.image-tag }}
 
