@@ -67,6 +67,10 @@ jobs:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ap-south-1
+      - name: get path details
+        run: |
+          ls -l $GITHUB_WORKSPACE
+          ls -l $GITHUB_WORKSPACE/ecs
       - name: Render new image in task definition
         id: render-container
         uses: aws-actions/amazon-ecs-render-task-definition@v1
