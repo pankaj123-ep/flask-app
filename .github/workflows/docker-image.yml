@@ -36,7 +36,7 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: taskdef_file
-        paths: ecs/app-flask-revision1.json
+        path: ecs/app-flask-revision1.json
   
   run-image:
     name: Pull and Run Docker Image
@@ -76,7 +76,7 @@ jobs:
         run: |
           ls -l $GITHUB_WORKSPACE
           ls -l $GITHUB_WORKSPACE/ecs
-          
+
       - name: Download task definition artifact
         uses: actions/download-artifact@v4
         with:
