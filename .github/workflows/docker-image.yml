@@ -86,7 +86,7 @@ jobs:
           image: ipdocker/flask-app:${{ needs.build-and-push.outputs.image-tag }}
 
       - name: Deploy to ECS service
-        uses: aws-actions/amazon-ecs-deploy-task-definition@v1
+        uses: aws-actions/amazon-ecs-deploy-task-definition@v2
         with:
           task-definition: ${{ steps.render-container.outputs.task-definition }}
           service: app-flask-service
