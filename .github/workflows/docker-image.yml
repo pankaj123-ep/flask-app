@@ -24,7 +24,7 @@ jobs:
     - name: environment variable access
       env:
          name: "test value"
-         dept: "devops"
+         dept: "dev"
       if: ${{env.dept=='devops'}}
       run: |
         echo "name is $name and dept is $dept"
