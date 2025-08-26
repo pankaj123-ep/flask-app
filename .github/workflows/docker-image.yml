@@ -10,7 +10,10 @@ on:
 jobs:
 
   build-and-push:
-
+    environment: production
+    env:
+      testvalue: "test value"
+      dept: "devops"
     name: build-and-push
     runs-on: ubuntu-latest
     outputs:
@@ -23,7 +26,10 @@ jobs:
          name: "test value"
          dept: "devops"
       if: ${{env.dept=='devops'}}
-      run: echo "name is $name and dept is $dept"
+      run: |
+        echo "name is $name and dept is $dept"
+        echo "${{env.testvalue}}"
+        echo "${{env}}"
       
     - uses: actions/checkout@v4
     - name: Set up Docker image tag
