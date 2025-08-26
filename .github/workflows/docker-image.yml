@@ -15,8 +15,16 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       image-tag: ${{ steps.vars.outputs.image-tag }}
+    
 
     steps:
+    - name: environment variable access
+      env:
+         name: "test value"
+         dept: "devops"
+      if: ${{env.dept=='devops'}}
+      run: echo "name is $name and dept is $dept"
+      
     - uses: actions/checkout@v4
     - name: Set up Docker image tag
       id: vars
@@ -58,6 +66,7 @@ jobs:
       #  run: curl http://localhost:5000
       #  continue-on-error: false
   deployToEcs:
+   
     name: Deploy to ECS
     runs-on: ubuntu-latest
     needs: run-image
